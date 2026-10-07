@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gender & Society — Understanding how gender shapes everyday life</title>
+<meta name="description" content="An educational site exploring gender roles, work, education, law and everyday life.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F4FA; --surface:#FFFFFF; --ink:#1A1D3A; --muted:#545A7A;
+  --violet:#5B3FFF; --teal:#0E8F7E; --amber:#F0B13A; --rose:#E8527A;
+  --line:#D9DDEE;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12142B; --surface:#1B1E3F; --ink:#EEF0FF; --muted:#A9AFD1; --line:#2E3263;
+    --violet:#8C78FF; --teal:#3CCBB5; --amber:#F5C25E; --rose:#FF7A9C;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12142B; --surface:#1B1E3F; --ink:#EEF0FF; --muted:#A9AFD1; --line:#2E3263;
+  --violet:#8C78FF; --teal:#3CCBB5; --amber:#F5C25E; --rose:#FF7A9C;
+}
+*{box-sizing:border-box}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.65}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0 0 .5em;letter-spacing:-.02em}
+p{margin:0 0 1em;max-width:62ch}
+a{color:var(--violet)}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px;z-index:99}
+.skip:focus{left:8px}
+
+/* header */
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.brand{font-family:var(--display);font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--ink);letter-spacing:-.02em}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+nav a{font-family:var(--display);font-weight:500;font-size:.95rem;text-decoration:none;color:var(--ink)}
+nav a:hover{color:var(--violet)}
+.tools{display:flex;gap:8px;align-items:center}
+.icon-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 12px;font:500 .85rem var(--display);cursor:pointer}
+.menu-btn{display:none}
+@media (max-width:760px){
+  .menu-btn{display:inline-block}
+  nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:16px 24px}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:14px}
+}
+
+/* hero */
+.hero{padding:96px 0 72px}
+.hero h1{font-size:clamp(2.6rem,8vw,6rem);font-weight:800;max-width:14ch}
+.hero h1 span{display:inline-block}
+.hero .lead{font-size:1.3rem;color:var(--muted);max-width:52ch;margin:24px 0 32px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;font:700 1rem var(--display);padding:14px 24px;border-radius:999px;text-decoration:none;border:2px solid var(--ink);cursor:pointer}
+.btn.primary{background:var(--violet);border-color:var(--violet);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{transform:translateY(-2px)}
+.stripe{display:flex;height:10px;margin-top:64px;border-radius:999px;overflow:hidden}
+.stripe i{flex:1}
+.stripe i:nth-child(1){background:var(--violet)}.stripe i:nth-child(2){background:var(--teal)}
+.stripe i:nth-child(3){background:var(--amber)}.stripe i:nth-child(4){background:var(--rose)}
+@media (prefers-reduced-motion:no-preference){
+  .stripe i{transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+  .stripe i:nth-child(2){animation-delay:.12s}.stripe i:nth-child(3){animation-delay:.24s}.stripe i:nth-child(4){animation-delay:.36s}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+}
+
+/* topics */
+.intro{max-width:62ch}
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px}
+.topic{background:var(--surface);border-radius:20px;padding:28px;border-top:6px solid var(--c)}
+.topic:nth-child(1){--c:var(--violet)}.topic:nth-child(2){--c:var(--teal)}
+.topic:nth-child(3){--c:var(--amber)}.topic:nth-child(4){--c:var(--rose)}
+.topic h3{font-size:1.35rem}
+.topic p{color:var(--muted);font-size:1rem;margin:0}
+
+/* explorer */
+.explorer{background:var(--ink);color:#F2F4FA;border-radius:32px;padding:56px 40px}
+:root[data-theme="dark"] .explorer,
+:root:not([data-theme="light"]) .explorer{--x:1}
+.explorer h2{color:#fff}
+.explorer p{color:#C3C8E6}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+.tab{font:500 .95rem var(--display);padding:10px 18px;border-radius:999px;border:1px solid #5C6199;background:transparent;color:#F2F4FA;cursor:pointer}
+.tab[aria-selected="true"]{background:#F2F4FA;color:#1A1D3A;border-color:#F2F4FA}
+.bars{display:grid;gap:18px;margin-top:8px}
+.bar-label{display:flex;justify-content:space-between;font:500 .95rem var(--display);margin-bottom:6px}
+.track{height:22px;background:#2C3066;border-radius:999px;overflow:hidden}
+.fill{height:100%;width:0;border-radius:999px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.fill.a{background:#F5C25E}.fill.b{background:#3CCBB5}
+.note{font-size:.9rem;color:#A9AFD1;margin-top:24px}
+@media (max-width:600px){.explorer{padding:36px 22px;border-radius:24px}}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+
+/* timeline */
+.timeline{list-style:none;margin:40px 0 0;padding:0 0 0 28px;border-left:3px solid var(--line)}
+.timeline li{position:relative;padding:0 0 32px 12px}
+.timeline li::before{content:"";position:absolute;left:-39px;top:8px;width:15px;height:15px;border-radius:50%;background:var(--violet);border:3px solid var(--bg)}
+.timeline b{font:800 1.4rem var(--display);display:block}
+.timeline p{color:var(--muted);margin:0}
+
+/* glossary */
+.glossary{margin-top:32px;max-width:760px}
+details{background:var(--surface);border-radius:16px;margin-bottom:12px;padding:0 22px}
+summary{cursor:pointer;font:700 1.1rem var(--display);padding:18px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--violet)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);padding-bottom:18px;margin:0}
+
+/* reading */
+.reads{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:36px}
+.read{background:var(--surface);border-radius:20px;padding:26px}
+.read h3{font-size:1.15rem;margin-bottom:.2em}
+.read small{display:block;color:var(--muted);font-size:.95rem;margin-bottom:10px}
+.read p{font-size:1rem;margin:0}
+
+/* join */
+.join{background:var(--surface);border-radius:32px;padding:56px 40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media (max-width:800px){.join{grid-template-columns:1fr;padding:36px 22px}}
+form{display:grid;gap:16px}
+label{font:500 .95rem var(--display);display:block;margin-bottom:6px}
+input,textarea,select{width:100%;font:1rem var(--body);padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+.err{color:var(--rose);font-size:.9rem;min-height:1.2em;margin:4px 0 0}
+.ok{background:color-mix(in srgb,var(--teal) 18%,transparent);border:1px solid var(--teal);border-radius:12px;padding:16px;display:none}
+
+footer{padding:48px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Gender &amp; Society</a>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#topics">Topics</a></li>
+        <li><a href="#data">Data</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#glossary">Glossary</a></li>
+        <li><a href="#reading">Reading</a></li>
+        <li><a href="#join">Get involved</a></li>
+      </ul>
+    </nav>
+    <div class="tools">
+      <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode">Theme</button>
+      <button class="icon-btn menu-btn" id="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero" id="top">
+    <div class="wrap">
+      <h1>Gender shapes how we live, work and belong.</h1>
+      <p class="lead">A plain-language guide to the ideas, data and history behind gender and society, for students, teachers and curious readers.</p>
+      <div class="btns">
+        <a class="btn primary" href="#topics">Start exploring</a>
+        <a class="btn ghost" href="#data">See the data</a>
+      </div>
+      <div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+
+  <section id="topics">
+    <div class="wrap">
+      <h2>Four places where gender shows up</h2>
+      <p class="intro">Sociologists treat gender as something societies build and rebuild: through expectations, institutions and everyday habits. These four areas are a good place to begin.</p>
+      <div class="topics">
+        <article class="topic">
+          <h3>Roles and expectations</h3>
+          <p>How families, media and peers teach children what is "normal" for girls, boys and everyone else.</p>
+        </article>
+        <article class="topic">
+          <h3>Work and money</h3>
+          <p>Pay gaps, unpaid care work and who gets promoted, and why the patterns persist.</p>
+        </article>
+        <article class="topic">
+          <h3>Education</h3>
+          <p>Who attends school, which subjects people are steered toward and how classrooms treat students differently.</p>
+        </article>
+        <article class="topic">
+          <h3>Law and rights</h3>
+          <p>Voting, property, protection from violence and legal recognition: rights that vary widely by country.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="data">
+    <div class="wrap">
+      <div class="explorer">
+        <h2>Explore the numbers</h2>
+        <p>Choose a topic to compare. Figures are rounded global estimates from international agencies and change from year to year, so check the latest reports before citing them.</p>
+        <div class="tabs" role="tablist" aria-label="Data topics">
+          <button class="tab" role="tab" aria-selected="true" data-i="0">Unpaid care work</button>
+          <button class="tab" role="tab" aria-selected="false" data-i="1">Parliament seats</button>
+          <button class="tab" role="tab" aria-selected="false" data-i="2">Pay</button>
+        </div>
+        <div class="bars" id="bars" role="tabpanel" aria-live="polite"></div>
+        <p class="note" id="note"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="history">
+    <div class="wrap">
+      <h2>Milestones in gender equality</h2>
+      <p class="intro">Progress has come in steps, often after long campaigns by ordinary people.</p>
+      <ol class="timeline">
+        <li><b>1893</b><p>New Zealand becomes the first self-governing country to give women the right to vote in national elections.</p></li>
+        <li><b>1948</b><p>The Universal Declaration of Human Rights affirms equal rights for everyone, regardless of sex.</p></li>
+        <li><b>1979</b><p>The UN adopts CEDAW, a treaty that commits countries to ending discrimination against women.</p></li>
+        <li><b>1995</b><p>The Beijing Declaration and Platform for Action sets a global agenda for women's rights.</p></li>
+        <li><b>2006</b><p>The Yogyakarta Principles apply international human rights law to sexual orientation and gender identity.</p></li>
+        <li><b>2015</b><p>Gender equality becomes Goal 5 of the UN Sustainable Development Goals.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="glossary">
+    <div class="wrap">
+      <h2>Key terms</h2>
+      <p class="intro">Shared vocabulary makes discussion clearer. Select a term to read its meaning.</p>
+      <div class="glossary">
+        <details><summary>Sex</summary><p>A classification, usually assigned at birth, based on biological characteristics such as chromosomes, hormones and anatomy.</p></details>
+        <details><summary>Gender</summary><p>The social roles, behaviours and identities that a society associates with being a woman, a man or another gender.</p></details>
+        <details><summary>Gender identity</summary><p>A person's own sense of their gender, which may or may not match the sex they were assigned at birth.</p></details>
+        <details><summary>Gender roles</summary><p>Shared expectations about how people of a given gender should act, dress and spend their time.</p></details>
+        <details><summary>Patriarchy</summary><p>A social system in which men hold most positions of power, authority and property.</p></details>
+        <details><summary>Intersectionality</summary><p>The idea, introduced by Kimberlé Crenshaw, that gender combines with race, class, disability and other factors to shape a person's experience.</p></details>
+        <details><summary>Gender mainstreaming</summary><p>Building attention to gender into every policy, budget and programme, instead of treating it as a separate issue.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="reading">
+    <div class="wrap">
+      <h2>Where to read next</h2>
+      <div class="reads">
+        <article class="read">
+          <h3>The Second Sex</h3><small>Simone de Beauvoir, 1949</small>
+          <p>A foundational study of how women are defined in relation to men.</p>
+        </article>
+        <article class="read">
+          <h3>Gender Trouble</h3><small>Judith Butler, 1990</small>
+          <p>Argues that gender is something people perform repeatedly, not a fixed trait.</p>
+        </article>
+        <article class="read">
+          <h3>Invisible Women</h3><small>Caroline Criado Perez, 2019</small>
+          <p>Shows how data that ignores women leads to products and policies that fail them.</p>
+        </article>
+        <article class="read">
+          <h3>Ain't I a Woman?</h3><small>bell hooks, 1981</small>
+          <p>Examines the overlap of race, class and gender in Black women's lives.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="wrap">
+      <div class="join">
+        <div>
+          <h2>Get involved</h2>
+          <p>Join the mailing list for new articles, event announcements and study guides. Have a question or a story to share? Add it in the message box.</p>
+        </div>
+        <div>
+          <form id="form" novalidate>
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" required>
+              <p class="err" id="e-name"></p>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+              <p class="err" id="e-email"></p>
+            </div>
+            <div>
+              <label for="role">I am a</label>
+              <select id="role" name="role">
+                <option>Student</option><option>Teacher</option><option>Researcher</option><option>Community member</option>
+              </select>
+            </div>
+            <div>
+              <label for="msg">Message (optional)</label>
+              <textarea id="msg" name="msg"></textarea>
+            </div>
+            <button class="btn primary" type="submit">Join the list</button>
+          </form>
+          <div class="ok" id="ok" role="status">Thank you. You're on the list.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr"></span> Gender &amp; Society. For education only.</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+// Data (rounded, approximate global estimates; update from the latest UN Women, ILO and IPU reports)
+var DATA=[
+  {a:["Women",75],b:["Men",25],unit:"%",note:"Share of all unpaid care and domestic work, roughly three-quarters done by women (ILO, UN Women)."},
+  {a:["Women",27],b:["Men",73],unit:"%",note:"Share of national parliament seats held by each, approximately (Inter-Parliamentary Union)."},
+  {a:["Women",80],b:["Men",100],unit:"",note:"Average global earnings: women earn about 80 for every 100 earned by men (ILO). Gaps vary by country and sector."}
+];
+var bars=document.getElementById("bars"),note=document.getElementById("note"),tabs=document.querySelectorAll(".tab");
+function render(i){
+  var d=DATA[i];
+  bars.innerHTML="";
+  [["a",d.a],["b",d.b]].forEach(function(p){
+    var w=document.createElement("div");
+    w.innerHTML='<div class="bar-label"><span>'+p[1][0]+'</span><span>'+p[1][1]+d.unit+'</span></div><div class="track"><div class="fill '+p[0]+'"></div></div>';
+    bars.appendChild(w);
+    var f=w.querySelector(".fill");
+    requestAnimationFrame(function(){requestAnimationFrame(function(){f.style.width=Math.min(p[1][1],100)+"%";});});
+  });
+  note.textContent=d.note;
+  tabs.forEach(function(t,n){t.setAttribute("aria-selected",n===i?"true":"false");});
+}
+tabs.forEach(function(t){t.addEventListener("click",function(){render(+t.dataset.i);});});
+render(0);
+
+// Mobile menu
+var menu=document.getElementById("menu"),nav=document.getElementById("nav");
+menu.addEventListener("click",function(){
+  var o=nav.classList.toggle("open");menu.setAttribute("aria-expanded",o);
+});
+nav.addEventListener("click",function(e){if(e.target.tagName==="A"){nav.classList.remove("open");menu.setAttribute("aria-expanded","false");}});
+
+// Theme toggle
+var root=document.documentElement;
+document.getElementById("theme").addEventListener("click",function(){
+  var dark=root.getAttribute("data-theme")==="dark" ||
+    (!root.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  root.setAttribute("data-theme",dark?"light":"dark");
+});
+
+// Form validation (demo only: connect to your own backend or form service)
+var form=document.getElementById("form");
+form.addEventListener("submit",function(e){
+  e.preventDefault();
+  var n=form.name.value.trim(),m=form.email.value.trim(),ok=true;
+  document.getElementById("e-name").textContent="";
+  document.getElementById("e-email").textContent="";
+  if(!n){document.getElementById("e-name").textContent="Enter your name.";ok=false;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){document.getElementById("e-email").textContent="Enter a valid email address, like name@example.com.";ok=false;}
+  if(!ok)return;
+  form.style.display="none";
+  document.getElementById("ok").style.display="block";
+});
+
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
